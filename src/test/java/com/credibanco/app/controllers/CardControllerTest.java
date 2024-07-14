@@ -41,7 +41,7 @@ class CardControllerTest {
         
         when(cardService.generateCardNumber(dto.getProductId(), dto.getHolderName())).thenReturn("1234567890123456");
 
-        String cardNumber = cardController.generateCardNumber(dto);
+        String cardNumber = cardController.generateCardNumber(dto.getProductId(), dto.getHolderName());
 
         assertNotNull(cardNumber);
         assertEquals("1234567890123456", cardNumber);

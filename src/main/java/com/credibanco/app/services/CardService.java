@@ -22,7 +22,10 @@ public class CardService implements ICardService{
     
     @Override
     public String generateCardNumber(String productId, String holderName) {
-        String cardNumber = productId + String.format("%010d", new Random().nextInt(1000000000));
+        Random random = new Random();
+        long randomNumber = Math.abs(random.nextLong() % 1000000000000000L);
+        String formattedNumber = String.format("%015d", randomNumber);
+        String cardNumber = productId + formattedNumber;
         Card card = new Card();
         card.setCardId(cardNumber);
         card.setProductName(productId.equals("123456") ? "Tarjeta de Crédito" : "Tarjeta de Débito");

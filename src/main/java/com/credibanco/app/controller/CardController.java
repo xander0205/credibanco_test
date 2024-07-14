@@ -4,13 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.credibanco.app.dtos.ActivateCardDTO;
 import com.credibanco.app.dtos.GenerateCardNumberDTO;
@@ -24,9 +18,9 @@ public class CardController {
     @Autowired
     private ICardService cardService;
 
-    @PostMapping("/number")
-    public String generateCardNumber(@RequestBody GenerateCardNumberDTO dto) {
-        return cardService.generateCardNumber(dto.getProductId(), dto.getHolderName());
+    @GetMapping("/number")
+    public String generateCardNumber(@RequestParam String productId, @RequestParam String holderName) {
+        return cardService.generateCardNumber(productId, holderName);
     }
 
     @PostMapping("/enroll")
